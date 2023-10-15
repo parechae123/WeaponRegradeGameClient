@@ -19,7 +19,7 @@ public class LoginManager : MonoBehaviour
     public string token;
 
     //아래 URL은 응용시 본인 호스트 주소로 변경행줘야함
-    private const string apiUrl = "http://localhost:3000";  //Node.js 주소
+    private const string apiUrl = "https://port-0-server-weaponregrade-jvpb2aln15y04e.sel5.cloudtype.app/:3000";  //Node.js 주소
     public void Regist()
     {
         StartCoroutine(AttemptRegist(usernameRegist.text,passwordRegist.text));
