@@ -40,19 +40,15 @@ public class LoginManager : MonoBehaviour
         using (UnityWebRequest webRequest = UnityWebRequest.Post(apiUrl + "/regist", form))
         {
             yield return webRequest.SendWebRequest();
+
             if (webRequest.result != UnityWebRequest.Result.Success)
             {
-                loginStatusText.text = "Login failed : " + webRequest.error;
+                loginRegist.text = "회원가입 실패: " + webRequest.error;
             }
             else
             {
-                loginStatusText.text = "Login successful!";
-                string responseText = webRequest.downloadHandler.text;
-                //JSON 응답에서 토큰 값을 추출
-                var responseData = JsonConvert.DeserializeObject<ResponseData>(responseText);
-                token = responseData.token;
-
-                Debug.Log("Login successful! Token : " + token);
+                loginRegist.text = "회원가입 성공!";
+                // 여기에서 추가적인 로직을 수행하거나 사용자에게 메시지를 표시할 수 있습니다.
             }
         }
     }
