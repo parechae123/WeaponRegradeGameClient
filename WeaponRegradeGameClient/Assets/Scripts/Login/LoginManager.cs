@@ -54,13 +54,15 @@ public class LoginManager : MonoBehaviour
     {
         WWWForm form = new WWWForm();
         form.AddField("userID", userID);
-        form.AddField("password", password);
+        form.AddField("userPassword", password);
         using (UnityWebRequest webRequest = UnityWebRequest.Post(apiUrl + "/login", form))
         {
             yield return webRequest.SendWebRequest();
+            Debug.Log(webRequest.responseCode);
             if (webRequest.result != UnityWebRequest.Result.Success)
             {
-                loginStatusText.text = "Login failed : " + webRequest.error;
+
+                loginStatusText.text = "Login failed : " + webRequest.downloadHandler.text;
             }
             else
             {
