@@ -8,7 +8,7 @@ using TMPro;
 public class LoginManager : MonoBehaviour
 {
     [Header("로그인")]
-    public TMP_InputField usernameInput;
+    public TMP_InputField userIDInput;
     public TMP_InputField passwordInput;
     public TextMeshProUGUI loginStatusText;
     public string token;
@@ -32,7 +32,7 @@ public class LoginManager : MonoBehaviour
     }
     public void Login()
     {
-        StartCoroutine(AttemptLogin(usernameInput.text, passwordInput.text));
+        StartCoroutine(AttemptLogin(userIDInput.text, passwordInput.text));
     }
     IEnumerator AttemptRegist(string userID, string userName, string password)
     {
@@ -47,22 +47,13 @@ public class LoginManager : MonoBehaviour
             {
                 loginStatusText.text = "Login failed : " + webRequest.error;
             }
-            else
-            {
-                loginStatusText.text = "Login successful!";
-                string responseText = webRequest.downloadHandler.text;
-                //JSON 응답에서 토큰 값을 추출
-                var responseData = JsonConvert.DeserializeObject<ResponseData>(responseText);
-                token = responseData.token;
 
-                Debug.Log("Login successful! Token : " + token);
-            }
         }
     }
-    IEnumerator AttemptLogin(string username,string password)
+    IEnumerator AttemptLogin(string userID,string password)
     {
         WWWForm form = new WWWForm();
-        form.AddField("username", username);
+        form.AddField("userID", userID);
         form.AddField("password", password);
         using (UnityWebRequest webRequest = UnityWebRequest.Post(apiUrl + "/login", form))
         {
