@@ -18,6 +18,9 @@ public class LoginManager : MonoBehaviour
     public TMP_InputField usernameRegist;
     public TMP_InputField passwordRegist;
     public TextMeshProUGUI loginRegist;
+    [Header("판넬")]
+    public GameObject loginPanel;
+    public GameObject registrationPanel;
 
 
     //아래 URL은 응용시 본인 호스트 주소로 변경행줘야함
