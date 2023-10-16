@@ -1,4 +1,4 @@
-    using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -13,12 +13,11 @@ public class LoginManager : MonoBehaviour
     public TextMeshProUGUI loginStatusText;
     public string token;
     [Header("회원가입")]
+
+    public TMP_InputField userIDRegist;
     public TMP_InputField usernameRegist;
     public TMP_InputField passwordRegist;
     public TextMeshProUGUI loginRegist;
-
-    public GameObject loginPanel;
-    public GameObject registrationPanel;
 
 
     //아래 URL은 응용시 본인 호스트 주소로 변경행줘야함
@@ -26,29 +25,34 @@ public class LoginManager : MonoBehaviour
 
     public void Regist()
     {
-        StartCoroutine(AttemptRegist(usernameRegist.text,passwordRegist.text));
+        StartCoroutine(AttemptRegist(userIDRegist.text, usernameRegist.text,passwordRegist.text));
     }
     public void Login()
     {
         StartCoroutine(AttemptLogin(usernameInput.text, passwordInput.text));
     }
-    IEnumerator AttemptRegist(string username, string password)
+    IEnumerator AttemptRegist(string userID, string userName, string password)
     {
         WWWForm form = new WWWForm();
-        form.AddField("username", username);
-        form.AddField("password", password);
+        form.AddField("userID", userID);
+        form.AddField("userName", userName);
+        form.AddField("userPassword", password);
         using (UnityWebRequest webRequest = UnityWebRequest.Post(apiUrl + "/regist", form))
         {
             yield return webRequest.SendWebRequest();
-
             if (webRequest.result != UnityWebRequest.Result.Success)
             {
-                loginRegist.text = "회원가입 실패: " + webRequest.error;
+                loginStatusText.text = "Login failed : " + webRequest.error;
             }
             else
             {
-                loginRegist.text = "회원가입 성공!";
-                // 여기에서 추가적인 로직을 수행하거나 사용자에게 메시지를 표시할 수 있습니다.
+                loginStatusText.text = "Login successful!";
+                string responseText = webRequest.downloadHandler.text;
+                //JSON 응답에서 토큰 값을 추출
+                var responseData = JsonConvert.DeserializeObject<ResponseData>(responseText);
+                token = responseData.token;
+
+                Debug.Log("Login successful! Token : " + token);
             }
         }
     }
