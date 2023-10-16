@@ -4222,7 +4222,7 @@ MonoBehaviour:
   passwordInput: {fileID: 604227467}
   loginStatusText: {fileID: 193055322}
   token: 
-  userIDRegist: {fileID: 0}
+  userIDRegist: {fileID: 632109704}
   usernameRegist: {fileID: 632109704}
   passwordRegist: {fileID: 1317546511}
   loginRegist: {fileID: 0}
