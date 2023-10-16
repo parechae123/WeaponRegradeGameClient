@@ -11,12 +11,12 @@ public class LoginManager : MonoBehaviour
     public TMP_InputField usernameInput;
     public TMP_InputField passwordInput;
     public TextMeshProUGUI loginStatusText;
+    public string token;
     [Header("회원가입")]
     public TMP_InputField usernameRegist;
     public TMP_InputField passwordRegist;
     public TextMeshProUGUI loginRegist;
 
-    public string token;
 
     //아래 URL은 응용시 본인 호스트 주소로 변경행줘야함
     private const string apiUrl = "https://port-0-server-weaponregrade-jvpb2aln15y04e.sel5.cloudtype.app";  //Node.js 주소
@@ -34,7 +34,7 @@ public class LoginManager : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("username", username);
         form.AddField("password", password);
-        using (UnityWebRequest webRequest = UnityWebRequest.Post(apiUrl + "/resgist", form))
+        using (UnityWebRequest webRequest = UnityWebRequest.Post(apiUrl + "/regist", form))
         {
             yield return webRequest.SendWebRequest();
             if (webRequest.result != UnityWebRequest.Result.Success)
@@ -110,7 +110,6 @@ public class LoginManager : MonoBehaviour
             Debug.LogError("Token is missing");
             return;
         }
-
         SendAutienticatedRequest("/protected");
     }
     [System.Serializable]
