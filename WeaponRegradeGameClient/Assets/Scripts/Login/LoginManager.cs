@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -16,6 +16,9 @@ public class LoginManager : MonoBehaviour
     public TMP_InputField usernameRegist;
     public TMP_InputField passwordRegist;
     public TextMeshProUGUI loginRegist;
+
+    public GameObject loginPanel;
+    public GameObject registrationPanel;
 
 
     //아래 URL은 응용시 본인 호스트 주소로 변경행줘야함
@@ -116,5 +119,17 @@ public class LoginManager : MonoBehaviour
     private class ResponseData
     {
         public string token;
+    }
+
+    public void ShowLoginPanel()
+    {
+        loginPanel.SetActive(true);
+        registrationPanel.SetActive(false);
+    }
+
+    public void ShowRegistrationPanel()
+    {
+        loginPanel.SetActive(false);
+        registrationPanel.SetActive(true);
     }
 }
