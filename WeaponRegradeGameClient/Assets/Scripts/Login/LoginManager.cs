@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using Newtonsoft.Json;
 using UnityEngine;
 using TMPro;
+using System.Net;
+
 public class LoginManager : MonoBehaviour
 {
     [Header("로그인")]
@@ -61,7 +63,6 @@ public class LoginManager : MonoBehaviour
             Debug.Log(webRequest.responseCode);
             if (webRequest.result != UnityWebRequest.Result.Success)
             {
-
                 loginStatusText.text = "Login failed : " + webRequest.downloadHandler.text;
             }
             else
@@ -71,8 +72,23 @@ public class LoginManager : MonoBehaviour
                 //JSON 응답에서 토큰 값을 추출
                 var responseData = JsonConvert.DeserializeObject<ResponseData>(responseText);
                 token = responseData.token;
-
+                StartCoroutine(SuccessLogin(userID));
                 Debug.Log("Login successful! Token : " + token);
+            }
+        }
+    }
+    IEnumerator SuccessLogin(string userID)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("userID", userID);
+        AccountValue tempACC;
+        using (UnityWebRequest webRequest = UnityWebRequest.Post(apiUrl + "/loginSuccess", form))
+        {
+            yield return webRequest.SendWebRequest();
+            if (webRequest.result == UnityWebRequest.Result.Success)
+            {
+                tempACC = JsonConvert.DeserializeObject<AccountValue>(webRequest.downloadHandler.text);
+                Debug.Log(tempACC);
             }
         }
     }
@@ -116,7 +132,6 @@ public class LoginManager : MonoBehaviour
     {
         public string token;
     }
-
     public void ShowLoginPanel()
     {
         loginPanel.SetActive(true);
