@@ -88,7 +88,8 @@ public class LoginDebuggingManager : MonoBehaviour
             if (webRequest.result == UnityWebRequest.Result.Success)
             {
                 tempACC = JsonConvert.DeserializeObject<AccountValue>(webRequest.downloadHandler.text);
-                Debug.Log(tempACC);
+                Debug.Log("인덱스 : " +tempACC.index+"유저 아이디 : " +tempACC.userID+ "유저네임 : " + tempACC.userName);
+                GameManager.Instance.UserValue = tempACC;
             }
         }
     }
