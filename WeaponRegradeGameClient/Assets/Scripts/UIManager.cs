@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class UIManager : MonoBehaviour
 {
-    public Text money;
-    public Image weaponIMG;
+    public Canvas staticCanvas;
+    public Text plrMoney;
+    public UnityEngine.UI.Image weaponIMG;
+    public UnityEngine.UI.Image BackGroundIMG;
+    public Text playerInfomations;
     private static UIManager instance;
     public static UIManager Instance
     {
@@ -14,25 +18,32 @@ public class UIManager : MonoBehaviour
     }
     private void Awake()
     {
-        if (instance ==null)
+        DontDestroyOnLoad(staticCanvas.gameObject);
+        InGameUIOnOFF(false);
+        if (instance == null)
         {
-
-            if(instance == this)
-            {
-                instance = this;
-                DontDestroyOnLoad(this);
-            }
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            if (instance != this)
-            {
-                Destroy(this);
-            }
+            Destroy(this.gameObject);
         }
     }
-    public void chageWeaponIMG(int itemIndex)
+    public void InGameUIOnOFF(bool value)
     {
-        weaponIMG.sprite = Resources.Load<Sprite>("WeaponIMG/Sword"+itemIndex);
+        plrMoney.gameObject.SetActive(value);
+        weaponIMG.gameObject.SetActive(value);
+        playerInfomations.gameObject.SetActive(value);
+    }
+    public void SetAccountValue(string plrName,uint money,uint weaponIndex)
+    {
+        playerInfomations.text = plrName;
+        plrMoney.text = "¼ÒÁö±Ý : "+money.ToString();
+        changeIMG(weaponIndex,ref weaponIMG);
+    }
+    public void changeIMG(uint itemIndex,ref UnityEngine.UI.Image target)
+    {
+        target.sprite = Resources.Load<Sprite>("WeaponIMG/Sword"+itemIndex);
     }
 }

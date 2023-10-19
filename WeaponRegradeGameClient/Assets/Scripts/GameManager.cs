@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +17,12 @@ public class GameManager : MonoBehaviour
 
     }
     [SerializeField]private AccountValue userValue;
+    [SerializeField]private PlayerInventory playerInven;
+    public PlayerInventory PlayerInven
+    {
+        get { return playerInven; }
+        set { playerInven = value; }
+    }
     public AccountValue UserValue 
     {
         get
@@ -57,10 +64,8 @@ public class GameManager : MonoBehaviour
             Debug.Log("로딩 진행률 : " + (progress * 100) + "%");
             yield return null;
         }
+        
+        UIManager.Instance.InGameUIOnOFF(true);
         Debug.Log("로딩 완료");
-        yield return new WaitForSeconds(1);
-        UIManager.Instance.money = GameObject.Find("PlayerMoney").GetComponent<UnityEngine.UI.Text>();
-
-        /*UIManager.Instance.chageWeaponIMG()*/
     }
 }

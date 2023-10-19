@@ -8,3 +8,10 @@ public class AccountValue
     [SerializeField] public string userID;
     [SerializeField] public string userName;
 }
+[System.Serializable]
+public class PlayerInventory
+{
+    [SerializeField] public string userID;
+    [SerializeField] public int money;
+    [SerializeField] public uint maxRegrade;
+}

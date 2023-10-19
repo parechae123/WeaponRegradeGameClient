@@ -90,6 +90,23 @@ public class LoginDebuggingManager : MonoBehaviour
                 tempACC = JsonConvert.DeserializeObject<AccountValue>(webRequest.downloadHandler.text);
                 Debug.Log("인덱스 : " +tempACC.index+"유저 아이디 : " +tempACC.userID+ "유저네임 : " + tempACC.userName);
                 GameManager.Instance.UserValue = tempACC;
+                StartCoroutine(GetInvenInfo(tempACC.userID));
+            }
+        }
+    }
+    IEnumerator GetInvenInfo(string userID)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("userID", userID);
+        PlayerInventory tempInven;
+        using (UnityWebRequest webRequest = UnityWebRequest.Post(apiUrl + "/invenInfo", form))
+        {
+            yield return webRequest.SendWebRequest();
+            if (webRequest.result == UnityWebRequest.Result.Success)
+            {
+                tempInven = JsonConvert.DeserializeObject<PlayerInventory>(webRequest.downloadHandler.text);
+                Debug.Log("유저 아이디 : " + tempInven.userID+ "최대 강화치 : "+tempInven.maxRegrade+ "가진 돈 : " + tempInven.money);
+                GameManager.Instance.PlayerInven = tempInven;
             }
         }
     }
