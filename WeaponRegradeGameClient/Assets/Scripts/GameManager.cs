@@ -1,7 +1,9 @@
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
@@ -16,6 +18,7 @@ public class GameManager : MonoBehaviour
         }
 
     }
+    public const string apiUrl = "http://127.0.0.1:3000";  //Node.js 주소
     [SerializeField]private AccountValue userValue;
     [SerializeField]private PlayerInventory playerInven;
     public PlayerInventory PlayerInven
@@ -32,6 +35,7 @@ public class GameManager : MonoBehaviour
         set
         {
             StartCoroutine(mainToGameScene(value));
+            StartCoroutine(GetInvenInfo(value.userID));
             userValue = value;
         }
     }
@@ -68,4 +72,21 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.InGameUIOnOFF(true);
         Debug.Log("로딩 완료");
     }
+    public IEnumerator GetInvenInfo(string userID)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("userID", userID);
+        PlayerInventory tempInven;
+        using (UnityWebRequest webRequest = UnityWebRequest.Post(apiUrl + "/invenInfo", form))
+        {
+            yield return webRequest.SendWebRequest();
+            if (webRequest.result == UnityWebRequest.Result.Success)
+            {
+                tempInven = JsonConvert.DeserializeObject<PlayerInventory>(webRequest.downloadHandler.text);
+                Debug.Log("유저 아이디 : " + tempInven.userID + "최대 강화치 : " + tempInven.maxRegrade + "가진 돈 : " + tempInven.money);
+                GameManager.Instance.PlayerInven = tempInven;
+            }
+        }
+    }
+
 }
