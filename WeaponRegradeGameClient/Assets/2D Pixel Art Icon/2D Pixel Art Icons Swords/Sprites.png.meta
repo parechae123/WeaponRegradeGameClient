@@ -3,7 +3,7 @@ guid: 6eb16e372762d6b4cb708c44ebfab931
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -63,6 +63,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -429,21 +430,21 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sword2: 131449278
-      Sword11: -460413151
-      Sword5: -1259760662
-      Sword8: 503644337
-      Sword13: 1169189359
-      Sword4: -1383742100
-      Sword7: 1145680292
-      Sword6: -1041754904
-      Sword3: 23267520
       Sword1: -267587109
-      Sword9: 1936746835
-      Sword12: 1008709038
       Sword10: 607831742
+      Sword11: -460413151
+      Sword12: 1008709038
+      Sword13: 1169189359
       Sword14: 2084996774
       Sword15: 1907593904
+      Sword2: 131449278
+      Sword3: 23267520
+      Sword4: -1383742100
+      Sword5: -1259760662
+      Sword6: -1041754904
+      Sword7: 1145680292
+      Sword8: 503644337
+      Sword9: 1936746835
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

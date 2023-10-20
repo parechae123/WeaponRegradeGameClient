@@ -949,7 +949,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &262382505
 RectTransform:
@@ -2651,6 +2651,7 @@ MonoBehaviour:
     userID: 
     money: 0
     maxRegrade: 0
+    WeaponIndex: 0
 --- !u!1 &898503112
 GameObject:
   m_ObjectHideFlags: 0
@@ -3108,7 +3109,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &1053194682
 RectTransform:

@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
-public class UIManager : MonoBehaviour
+public class UIDataManager : MonoBehaviour
 {
     public Canvas staticCanvas;
     public Text plrMoney;
     public UnityEngine.UI.Image weaponIMG;
     public UnityEngine.UI.Image BackGroundIMG;
     public Text playerInfomations;
-    private static UIManager instance;
-    public static UIManager Instance
+    private static UIDataManager instance;
+    public static UIDataManager Instance
     {
         get { return instance; }
     }
@@ -36,14 +36,22 @@ public class UIManager : MonoBehaviour
         weaponIMG.gameObject.SetActive(value);
         playerInfomations.gameObject.SetActive(value);
     }
-    public void SetAccountValue(string plrName,uint money,uint weaponIndex)
+    public void SetAccountValue(PlayerInventory tempInven)
     {
-        playerInfomations.text = plrName;
-        plrMoney.text = "소지금 : "+money.ToString();
-        changeIMG(weaponIndex,ref weaponIMG);
+        playerInfomations.text = "유저 ID : " + tempInven.userID+"\n"
+            +"최대 강화기록 : "+tempInven.maxRegrade+ "\n"+
+            "현재 무기 강화치 : "+ tempInven.WeaponIndex;
+        plrMoney.text = "소지금 : "+ tempInven.money.ToString();
+        changeIMG(tempInven.WeaponIndex,ref weaponIMG);
+    }
+    public void GetItemDatas()
+    {
+
     }
     public void changeIMG(uint itemIndex,ref UnityEngine.UI.Image target)
     {
-        target.sprite = Resources.Load<Sprite>("WeaponIMG/Sword"+itemIndex);
+        target.sprite = Resources.Load<Sprite>("WeaponIMG/Sword" + itemIndex);
+
+
     }
 }

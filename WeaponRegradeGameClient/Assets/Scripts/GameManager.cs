@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         
-        UIManager.Instance.InGameUIOnOFF(true);
+        UIDataManager.Instance.InGameUIOnOFF(true);
         Debug.Log("로딩 완료");
     }
     public IEnumerator GetInvenInfo(string userID)
@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour
                 tempInven = JsonConvert.DeserializeObject<PlayerInventory>(webRequest.downloadHandler.text);
                 Debug.Log("유저 아이디 : " + tempInven.userID + "최대 강화치 : " + tempInven.maxRegrade + "가진 돈 : " + tempInven.money);
                 GameManager.Instance.PlayerInven = tempInven;
+                UIDataManager.Instance.SetAccountValue(tempInven);
             }
         }
     }
