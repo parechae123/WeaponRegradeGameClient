@@ -89,5 +89,21 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    public IEnumerator GetItemTable()
+    {
+        WWWForm form = new WWWForm();
+        ItemTable tempInven;
+        using (UnityWebRequest webRequest = UnityWebRequest.Post(apiUrl + "/getItemTable", form))
+        {
+            yield return webRequest.SendWebRequest();
+            if (webRequest.result == UnityWebRequest.Result.Success)
+            {
+                tempInven = JsonConvert.DeserializeObject<ItemTable>(webRequest.downloadHandler.text);
+
+                UIDataManager.Instance.itemTableOnClient = tempInven;
+                //UIDataManager.Instance.SetAccountValue(tempInven);
+            }
+        }
+    }
 
 }

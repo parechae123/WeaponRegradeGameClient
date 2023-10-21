@@ -11,6 +11,7 @@ public class UIDataManager : MonoBehaviour
     public UnityEngine.UI.Image weaponIMG;
     public UnityEngine.UI.Image BackGroundIMG;
     public Text playerInfomations;
+    public ItemTable itemTableOnClient;
     private static UIDataManager instance;
     public static UIDataManager Instance
     {
@@ -43,10 +44,6 @@ public class UIDataManager : MonoBehaviour
             "현재 무기 강화치 : "+ tempInven.WeaponIndex;
         plrMoney.text = "소지금 : "+ tempInven.money.ToString();
         changeIMG(tempInven.WeaponIndex,ref weaponIMG);
-    }
-    public void GetItemDatas()
-    {
-
     }
     public void changeIMG(uint itemIndex,ref UnityEngine.UI.Image target)
     {
