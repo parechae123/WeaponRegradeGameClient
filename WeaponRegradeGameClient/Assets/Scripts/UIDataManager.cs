@@ -11,7 +11,7 @@ public class UIDataManager : MonoBehaviour
     public UnityEngine.UI.Image weaponIMG;
     public UnityEngine.UI.Image BackGroundIMG;
     public Text playerInfomations;
-    public ItemTable itemTableOnClient;
+    public ItemTableList itemTableOnClient;
     private static UIDataManager instance;
     public static UIDataManager Instance
     {

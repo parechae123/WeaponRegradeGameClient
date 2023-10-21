@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            StartCoroutine(GetItemTable());
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -92,18 +93,21 @@ public class GameManager : MonoBehaviour
     public IEnumerator GetItemTable()
     {
         WWWForm form = new WWWForm();
-        ItemTable tempInven;
+        ItemTableList itemList;
         using (UnityWebRequest webRequest = UnityWebRequest.Post(apiUrl + "/getItemTable", form))
         {
             yield return webRequest.SendWebRequest();
             if (webRequest.result == UnityWebRequest.Result.Success)
             {
-                tempInven = JsonConvert.DeserializeObject<ItemTable>(webRequest.downloadHandler.text);
+                string json = webRequest.downloadHandler.text;
+                Debug.Log("테이블 리스트 : " + json);
 
-                UIDataManager.Instance.itemTableOnClient = tempInven;
-                //UIDataManager.Instance.SetAccountValue(tempInven);
+                itemList = JsonUtility.FromJson<ItemTableList>("{\"results\":" + json + "}");
+                UIDataManager.Instance.itemTableOnClient = JsonConvert.DeserializeObject<ItemTableList>(webRequest.downloadHandler.text);
+
             }
         }
     }
+
 
 }

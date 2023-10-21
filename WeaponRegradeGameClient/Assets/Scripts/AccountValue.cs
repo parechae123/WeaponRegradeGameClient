@@ -17,12 +17,19 @@ public class PlayerInventory
     [SerializeField] public uint WeaponIndex;
 }
 [System.Serializable]
+public class ItemTableList
+{
+    public ItemTable[] results;
+}
+
+[System.Serializable]
 public class ItemTable
 {
-    [SerializeField]public uint Index;
-    [SerializeField] public string ItemName;
-    [SerializeField] public string codeName;
-    [SerializeField] public int sellValue;
-    [SerializeField] public int buyValue;
-    [SerializeField] public float regradePercent;
+    public uint Index;
+    public string itemName;
+    public string codeName;
+    public int sellValue;
+    public int buyValue;
+    public float regradePercent;
+    public int regradeValue;
 }
