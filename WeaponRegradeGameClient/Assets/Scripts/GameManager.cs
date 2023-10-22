@@ -102,9 +102,14 @@ public class GameManager : MonoBehaviour
                 string json = webRequest.downloadHandler.text;
                 Debug.Log("테이블 리스트 : " + json);
 
-                itemList = JsonUtility.FromJson<ItemTableList>("{\"results\":" + json + "}");
-                UIDataManager.Instance.itemTableOnClient = JsonConvert.DeserializeObject<ItemTableList>(webRequest.downloadHandler.text);
-
+//                itemList = JsonUtility.FromJson<ItemTableList>("{\"results\":" + json + "}");
+                itemList = JsonConvert.DeserializeObject<ItemTableList>(webRequest.downloadHandler.text);
+                for (int i = 0; i < itemList.results.Length; i++)
+                {
+                    UIDataManager.Instance.itemDictionary.Add(itemList.results[i].Index,itemList.results[i]);
+                    Debug.Log(UIDataManager.Instance.itemDictionary[itemList.results[i].Index].itemName);
+                }
+                
             }
         }
     }
