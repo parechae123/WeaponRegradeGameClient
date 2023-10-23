@@ -14,18 +14,19 @@ public class LoginDebuggingManager : MonoBehaviour
     public TMP_InputField passwordInput;
     public TextMeshProUGUI loginStatusText;
     public string token;
-    [Header("회원가입")]
 
+    [Header("회원가입")]
     public TMP_InputField userIDRegist;
     public TMP_InputField usernameRegist;
     public TMP_InputField passwordRegist;
     public TextMeshProUGUI loginRegist;
+
     [Header("판넬")]
     public GameObject loginPanel;
     public GameObject registrationPanel;
 
-
     //아래 URL은 응용시 본인 호스트 주소로 변경행줘야함
+
     public const string apiUrl = "http://127.0.0.1:3000";  //Node.js 주소
 
     public void Regist()
@@ -146,4 +147,5 @@ public class LoginDebuggingManager : MonoBehaviour
         loginPanel.SetActive(false);
         registrationPanel.SetActive(true);
     }
+   
 }

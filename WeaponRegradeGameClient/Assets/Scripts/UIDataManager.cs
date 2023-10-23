@@ -12,6 +12,7 @@ public class UIDataManager : MonoBehaviour
     public UnityEngine.UI.Image BackGroundIMG;
     public Text playerInfomations;
     public Transform regradeButton;
+    public Transform saveButton;
     public Dictionary<uint, ItemTable> itemDictionary = new Dictionary<uint, ItemTable>();
     public ItemTable nowWeapon = new ItemTable();
     private static UIDataManager instance;
@@ -39,6 +40,7 @@ public class UIDataManager : MonoBehaviour
         weaponIMG.gameObject.SetActive(value);
         playerInfomations.gameObject.SetActive(value);
         regradeButton.gameObject.SetActive(value);
+        saveButton.gameObject.SetActive(value);
     }
     public void SetAccountValue(PlayerInventory tempInven)
     {
@@ -85,5 +87,5 @@ public class UIDataManager : MonoBehaviour
 
         
     }
-    
+        
 }

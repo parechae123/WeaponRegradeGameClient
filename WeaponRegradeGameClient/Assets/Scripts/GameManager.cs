@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,7 +19,12 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    public const string apiUrl = "http://127.0.0.1:3000";  //Node.js 林家
+    /*public Text userIDText;
+    public Text moneyText;
+    public Text maxRegradeText;
+    public Text weaponIndexText;*/
+
+    public string apiUrl = "http://127.0.0.1:3000";  //Node.js 林家
     [SerializeField]public AccountValue userValue;
     [SerializeField]public PlayerInventory playerInven;
     public PlayerInventory PlayerInven
@@ -39,6 +45,11 @@ public class GameManager : MonoBehaviour
             userValue = value;
         }
     }
+
+    /*public void Save()
+    {
+        StartCoroutine(UpdateInven(userIDText.text, moneyText.text, maxRegradeText.text, weaponIndexText.text));
+    }*/
 
     private void Awake()
     {
@@ -113,6 +124,26 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    /*public IEnumerator UpdateInven(string userID, string money, string maxRegrade, string weaponIndex)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("userID", userID);
+        form.AddField("money", money);
+        form.AddField("maxRegrade", maxRegrade);
+        form.AddField("WeaponIndex", weaponIndex);
 
+        using (UnityWebRequest webRequest = UnityWebRequest.Post(apiUrl + "/updateInven", form))
+        {
+            yield return webRequest.SendWebRequest();
 
+            if (webRequest.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError("UpdateInven 角菩: " + webRequest.error);
+            }
+            else
+            {
+                Debug.Log("UpdateInven 己傍");
+            }
+        }
+    }*/
 }

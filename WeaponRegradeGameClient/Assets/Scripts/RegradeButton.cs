@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class RegradeButton : MonoBehaviour
 {
+    private GameManager gameManager;
+
+    private void Awake()
+    {
+        gameManager = GameObject.Find("Managers").GetComponent<GameManager>();
+    }
     public void OnClickRegradeBTN()
     {
         if (isRegradeSucces()&& GameManager.Instance.playerInven.money - UIDataManager.Instance.nowWeapon.regradeValue > 0)
@@ -17,6 +23,10 @@ public class RegradeButton : MonoBehaviour
         }
         GameManager.Instance.playerInven.money -= UIDataManager.Instance.nowWeapon.regradeValue;
     }
+    /*public void OnClickSaveBTN()
+    {
+        gameManager.Save();
+    }*/
     private bool isRegradeSucces()
     {
 
