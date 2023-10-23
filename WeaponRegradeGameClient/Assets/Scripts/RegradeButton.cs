@@ -12,6 +12,7 @@ public class RegradeButton : MonoBehaviour
     }
     public void OnClickRegradeBTN()
     {
+        GameManager.Instance.playerInven.money -= UIDataManager.Instance.nowWeapon.regradeValue;
         if (isRegradeSucces()&& GameManager.Instance.playerInven.money - UIDataManager.Instance.nowWeapon.regradeValue > 0)
         {
             UIDataManager.Instance.changeNowWeapon(UIDataManager.Instance.nowWeapon.Index+1);
@@ -21,12 +22,8 @@ public class RegradeButton : MonoBehaviour
         {
             UIDataManager.Instance.changeNowWeapon(1);
         }
-        GameManager.Instance.playerInven.money -= UIDataManager.Instance.nowWeapon.regradeValue;
     }
-    /*public void OnClickSaveBTN()
-    {
-        gameManager.Save();
-    }*/
+
     private bool isRegradeSucces()
     {
 

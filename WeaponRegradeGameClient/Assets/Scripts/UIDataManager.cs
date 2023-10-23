@@ -13,6 +13,7 @@ public class UIDataManager : MonoBehaviour
     public Text playerInfomations;
     public Transform regradeButton;
     public Transform saveButton;
+    public Transform sellButton;
     public Dictionary<uint, ItemTable> itemDictionary = new Dictionary<uint, ItemTable>();
     public ItemTable nowWeapon = new ItemTable();
     private static UIDataManager instance;
@@ -78,7 +79,6 @@ public class UIDataManager : MonoBehaviour
             "무기 판매가 : " + nowWeapon.sellValue + "\n"+
             "무기 강화 확률 : " + nowWeapon.regradePercent+"%";
         plrMoney.text = "소지금 : " + GameManager.Instance.playerInven.money.ToString();
-        Debug.Log("여기다가 PlayerInven을 sql로 보내는 식을 써주면 될듯");
         changeIMG(index, ref weaponIMG);
     }
     public void changeIMG(uint itemIndex,ref UnityEngine.UI.Image target)
