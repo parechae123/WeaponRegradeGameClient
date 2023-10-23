@@ -2633,6 +2633,14 @@ MonoBehaviour:
   BackGroundIMG: {fileID: 948998117}
   playerInfomations: {fileID: 1917334986}
   regradeButton: {fileID: 1856209670}
+  nowWeapon:
+    Index: 0
+    itemName: 
+    codeName: 
+    sellValue: 0
+    buyValue: 0
+    regradePercent: 0
+    regradeValue: 0
 --- !u!114 &887875952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5051,6 +5059,7 @@ GameObject:
   - component: {fileID: 1856209673}
   - component: {fileID: 1856209672}
   - component: {fileID: 1856209671}
+  - component: {fileID: 1856209674}
   m_Layer: 5
   m_Name: Button_Regrade
   m_TagString: Untagged
@@ -5122,7 +5131,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1856209672}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1856209674}
+        m_TargetAssemblyTypeName: RegradeButton, Assembly-CSharp
+        m_MethodName: OnClickRegradeBTN
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1856209672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5161,6 +5182,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1856209669}
   m_CullTransparentMesh: 1
+--- !u!114 &1856209674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856209669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d218e3d414765bd46b78ced862e397db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1881941535
 GameObject:
   m_ObjectHideFlags: 0
@@ -5386,7 +5419,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 479.2924, y: 378.2786}
+  m_SizeDelta: {x: 690.11, y: 781.0739}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1917334986
 MonoBehaviour:

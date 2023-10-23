@@ -13,6 +13,7 @@ public class UIDataManager : MonoBehaviour
     public Text playerInfomations;
     public Transform regradeButton;
     public Dictionary<uint, ItemTable> itemDictionary = new Dictionary<uint, ItemTable>();
+    public ItemTable nowWeapon = new ItemTable();
     private static UIDataManager instance;
     public static UIDataManager Instance
     {
@@ -41,16 +42,48 @@ public class UIDataManager : MonoBehaviour
     }
     public void SetAccountValue(PlayerInventory tempInven)
     {
-        playerInfomations.text = "유저 ID : " + tempInven.userID+"\n"
-            +"최대 강화기록 : "+tempInven.maxRegrade+ "\n"+
-            "현재 무기 강화치 : "+ tempInven.WeaponIndex;
+        changeNowWeapon(tempInven.WeaponIndex);
+        playerInfomations.text = "유저 ID : " + GameManager.Instance.playerInven.userID + "\n"
+            + "최대 강화기록 : " + GameManager.Instance.playerInven.maxRegrade + "\n" +
+            "강화 비용 : " + nowWeapon.regradeValue + "\n" +
+            "현재 무기 강화치 : " + GameManager.Instance.playerInven.WeaponIndex + "\n" +
+            "현재 무기 이름 : " + nowWeapon.itemName + "\n" +
+            "무기 판매가 : " + nowWeapon.sellValue + "\n" +
+            "무기 강화 확률 : " + nowWeapon.regradePercent + "%";
         plrMoney.text = "소지금 : "+ tempInven.money.ToString();
-        changeIMG(tempInven.WeaponIndex,ref weaponIMG);
+
+    }
+    public void changeNowWeapon(uint index)
+    {
+        
+        nowWeapon.Index = itemDictionary[index].Index;
+        nowWeapon.itemName = itemDictionary[index].itemName;
+        nowWeapon.codeName = itemDictionary[index].codeName;
+        nowWeapon.sellValue = itemDictionary[index].sellValue;
+        nowWeapon.buyValue = itemDictionary[index].buyValue;
+        nowWeapon.regradePercent = itemDictionary[index].regradePercent;
+        nowWeapon.regradeValue = itemDictionary[index].regradeValue;
+        GameManager.Instance.playerInven.WeaponIndex = nowWeapon.Index;
+        if (nowWeapon.Index> GameManager.Instance.playerInven.maxRegrade)
+        {
+            GameManager.Instance.playerInven.maxRegrade = nowWeapon.Index;
+        }
+        playerInfomations.text = "유저 ID : " + GameManager.Instance.playerInven.userID + "\n"
+            + "최대 강화기록 : " + GameManager.Instance.playerInven.maxRegrade + "\n" +
+            "강화 비용 : " + nowWeapon.regradeValue + "\n" +
+            "현재 무기 강화치 : " + GameManager.Instance.playerInven.WeaponIndex + "\n" +
+            "현재 무기 이름 : " + nowWeapon.itemName + "\n" +
+            "무기 판매가 : " + nowWeapon.sellValue + "\n"+
+            "무기 강화 확률 : " + nowWeapon.regradePercent+"%";
+        plrMoney.text = "소지금 : " + GameManager.Instance.playerInven.money.ToString();
+        Debug.Log("여기다가 PlayerInven을 sql로 보내는 식을 써주면 될듯");
+        changeIMG(index, ref weaponIMG);
     }
     public void changeIMG(uint itemIndex,ref UnityEngine.UI.Image target)
     {
-        target.sprite = Resources.Load<Sprite>("WeaponIMG/Sword" + itemIndex);
+        target.sprite = Resources.Load<Sprite>("WeaponIMG/Sword" + nowWeapon.Index);
 
-
+        
     }
+    
 }

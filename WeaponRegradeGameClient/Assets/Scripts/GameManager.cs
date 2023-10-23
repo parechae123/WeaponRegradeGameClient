@@ -19,8 +19,8 @@ public class GameManager : MonoBehaviour
 
     }
     public const string apiUrl = "http://127.0.0.1:3000";  //Node.js аж╪р
-    [SerializeField]private AccountValue userValue;
-    [SerializeField]private PlayerInventory playerInven;
+    [SerializeField]public AccountValue userValue;
+    [SerializeField]public PlayerInventory playerInven;
     public PlayerInventory PlayerInven
     {
         get { return playerInven; }
