@@ -19,7 +19,19 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    public string apiUrl = "http://127.0.0.1:3000";  //Node.js 林家
+    public string apiUrl = "https://port-0-server-weaponregrade-jvpb2aln15y04e.sel5.cloudtype.app";  //Node.js 林家
+    public bool isCorrectURL(string tempURL)
+    {
+        if (apiUrl==tempURL) 
+        {
+            return true;
+        }
+        else
+        {
+            Debug.LogError("林家 惑捞");
+            return false;
+        }
+    }
     [SerializeField]public AccountValue userValue;
     [SerializeField]public PlayerInventory playerInven;
     public PlayerInventory PlayerInven

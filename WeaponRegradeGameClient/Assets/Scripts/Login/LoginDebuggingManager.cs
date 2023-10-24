@@ -26,9 +26,14 @@ public class LoginDebuggingManager : MonoBehaviour
     public GameObject registrationPanel;
 
     //아래 URL은 응용시 본인 호스트 주소로 변경행줘야함
+    public const string apiUrl = "https://port-0-server-weaponregrade-jvpb2aln15y04e.sel5.cloudtype.app";  //Node.js 주소
+    //https://port-0-server-weaponregrade-jvpb2aln15y04e.sel5.cloudtype.app
+    //http://127.0.0.1:3000
 
-    public const string apiUrl = "http://127.0.0.1:3000";  //Node.js 주소
-
+    private void Awake()
+    {
+        GameManager.Instance.isCorrectURL(apiUrl);
+    }
     public void Regist()
     {
         StartCoroutine(AttemptRegist(userIDRegist.text, usernameRegist.text, passwordRegist.text));
