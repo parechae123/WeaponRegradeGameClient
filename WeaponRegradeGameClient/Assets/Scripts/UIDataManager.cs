@@ -42,6 +42,7 @@ public class UIDataManager : MonoBehaviour
         playerInfomations.gameObject.SetActive(value);
         regradeButton.gameObject.SetActive(value);
         saveButton.gameObject.SetActive(value);
+        sellButton.gameObject.SetActive(value);
     }
     public void SetAccountValue(PlayerInventory tempInven)
     {
