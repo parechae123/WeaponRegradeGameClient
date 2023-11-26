@@ -14,12 +14,13 @@ public class RegradeButton : MonoBehaviour
     public void OnClickRegradeBTN()
     {
         GameManager.Instance.playerInven.money -= UIDataManager.Instance.nowWeapon.regradeValue;
-        if (isRegradeSucces()&& GameManager.Instance.playerInven.money - UIDataManager.Instance.nowWeapon.regradeValue > 0)
+        bool tempBool = isRegradeSucces();
+        if (tempBool&& GameManager.Instance.playerInven.money - UIDataManager.Instance.nowWeapon.regradeValue > 0)
         {
             UIDataManager.Instance.changeNowWeapon(UIDataManager.Instance.nowWeapon.Index+1);
             
         }
-        else if(isRegradeSucces() && GameManager.Instance.playerInven.money - UIDataManager.Instance.nowWeapon.regradeValue > 0)
+        else if(!tempBool && GameManager.Instance.playerInven.money - UIDataManager.Instance.nowWeapon.regradeValue > 0)
         {
             UIDataManager.Instance.changeNowWeapon(1);
         }

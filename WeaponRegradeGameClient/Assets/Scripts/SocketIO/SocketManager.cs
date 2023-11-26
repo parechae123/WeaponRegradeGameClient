@@ -30,8 +30,8 @@ public class InfoParams
 
 public class SocketManager : MonoBehaviour
 {
-    private SocketManager instance;
-    public SocketManager Instance { get { return instance; } }
+    private static SocketManager instance;
+    public static SocketManager Instance { get { return instance; } }
 
     private WebSocket webSocket;
     private bool IsConnected = false;

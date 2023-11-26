@@ -70,6 +70,7 @@ public class UIDataManager : MonoBehaviour
         GameManager.Instance.playerInven.WeaponIndex = nowWeapon.Index;
         if (nowWeapon.Index> GameManager.Instance.playerInven.maxRegrade)
         {
+            SocketManager.Instance.newRecordBreak();
             GameManager.Instance.playerInven.maxRegrade = nowWeapon.Index;
         }
         playerInfomations.text = "À¯Àú ID : " + GameManager.Instance.playerInven.userID + "\n"
