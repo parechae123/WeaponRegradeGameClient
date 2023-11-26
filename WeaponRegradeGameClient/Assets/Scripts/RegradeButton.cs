@@ -33,9 +33,11 @@ public class RegradeButton : MonoBehaviour
 
     private bool isRegradeSucces()
     {
-
-        if (Random.Range((int)0,(int)101)>=100-(UIDataManager.Instance.nowWeapon.regradePercent))
+        int tempNum = Random.Range((int)0, (int)101);
+        Debug.Log("³ª¿Â È®·ü°ª" + tempNum + "¹«±â È®·ü" +(100 - (UIDataManager.Instance.nowWeapon.regradePercent)));
+        if (tempNum >= 100-(UIDataManager.Instance.nowWeapon.regradePercent))
         {
+
             return true;
         }
         else
