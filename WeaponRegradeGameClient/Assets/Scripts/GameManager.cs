@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
                 for (int i = 0; i < itemList.results.Length; i++)
                 {
                     UIDataManager.Instance.itemDictionary.Add(itemList.results[i].Index,itemList.results[i]);
-                    Debug.Log(UIDataManager.Instance.itemDictionary[itemList.results[i].Index].itemName);
+                    //Debug.Log(UIDataManager.Instance.itemDictionary[itemList.results[i].Index].itemName);
                 }
                 
             }
